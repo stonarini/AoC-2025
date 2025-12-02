@@ -1,0 +1,10 @@
+name = "AoC-2025"
+version = "0.1.0"
+defaultTargets = ["AoC2025"]
+
+[[lean_lib]]
+name = "AoC2025"
+
+[[lean_exe]]
+name = "day01"
+root = "AoC2025.Day01"
