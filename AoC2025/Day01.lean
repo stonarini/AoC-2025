@@ -1,7 +1,7 @@
 import AoC2025.Utils
 
 def main (args : List String) : IO Unit := do
-    let input <- readToArray args
+    let input <- readToArray args "\n"
 
     let mut position := 50
     let mut part1 := 0
