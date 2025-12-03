@@ -1,5 +1,10 @@
-def readToArray (path: String) : IO (List String) := do
-  let file <- IO.FS.readFile path
-  return file.splitOn "\n"
+def readToArray (args: List String) : IO (List String) := do
+  match args with
+  | [] =>
+    IO.println "Error: Provide an Input File"
+    return []
+  | path :: _ =>
+    let file <- IO.FS.readFile path
+    return file.splitOn "\n"
 
 
