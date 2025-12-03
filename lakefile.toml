@@ -8,3 +8,8 @@ name = "AoC2025"
 [[lean_exe]]
 name = "day01"
 root = "AoC2025.Day01"
+
+[[lean_exe]]
+name = "day02"
+root = "AoC2025.Day02"
+
