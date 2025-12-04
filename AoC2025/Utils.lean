@@ -7,3 +7,5 @@ def readToArray (args: List String) (delim: String)  : IO (List String) := do
     let file <- IO.FS.readFile path
     return file.splitOn delim
 
+def joinVal (f: Nat) (s: Nat) : Nat := (s!"{f}{s}").toNat!
+

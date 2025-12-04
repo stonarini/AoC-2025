@@ -10,8 +10,6 @@ def splitVal (val: String) (bump : Bool) : (Nat × Nat) :=
         let s := (rval.drop half).toNat!
         (f, s)
 
-def joinVal (f: Nat) (s: Nat) : Nat := (s!"{f}{s}").toNat!
-
 def main (args : List String) : IO Unit := do
     let input <- readToArray args ","
 
