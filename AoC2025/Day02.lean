@@ -10,9 +10,7 @@ def splitVal (val: String) (bump : Bool) : (Nat × Nat) :=
         let s := (rval.drop half).toNat!
         (f, s)
 
-def main (args : List String) : IO Unit := do
-    let input <- readToArray args ","
-
+def part1 (input : List String) : IO Nat := do
     let mut invalidCodes : List Nat := []
 
     for codes in input do
@@ -37,5 +35,41 @@ def main (args : List String) : IO Unit := do
        f_min := f_min + 1
        s_min := 0
 
-    IO.println s!"The Sum of Invalid Codes is: {invalidCodes.sum}"
-    return
+    return invalidCodes.sum
+
+def part2 (input : List String) : IO Nat := do
+    let mut invalidCodes : List Nat := []
+
+    for codes in input do
+      if codes.length == 0 then continue
+      let cd := codes.splitOn "-"
+      let min := cd.head!.toNat!
+      let max := cd.getLast!.trim.toNat!
+
+      for i in [min:max+1] do
+        let val := toString i
+
+        if val.length < 2 then continue
+
+        for k in [1:(val.length/2)+1] do
+          if val.length % k != 0 then continue
+
+          let pat := val.take k
+          let reps := val.length / k
+
+          let s := (List.replicate reps pat).foldr (· ++ ·) ""
+
+          if s == val then
+            invalidCodes := i :: invalidCodes
+            break
+
+    return invalidCodes.sum
+
+def main (args : List String) : IO Unit := do
+    let input <- readToArray args ","
+
+    let res1 <- part1 input
+    let res2 <- part2 input
+
+    IO.println s!"The Sum of Invalid Codes is: {res1}"
+    IO.println s!"The Sum of All Invalid Codes is: {res2}"
